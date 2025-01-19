@@ -3,7 +3,7 @@ let audioChunks = [];
 
 const startButton = document.getElementById('startButton');
 const stopButton = document.getElementById('stopButton');
-const status = document.getElementById('status');
+const statusDisplay = document.getElementById('status');
 const audioPlayback = document.getElementById('audioPlayback');
 const responseDiv = document.getElementById('response');
 
@@ -12,7 +12,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         mediaRecorder = new MediaRecorder(stream);
 
         mediaRecorder.onstart = () => {
-            status.textContent = "Status: Recording...";
+            statusDisplay.textContent = "Status: Recording...";
             audioChunks = [];
         };
 
@@ -21,7 +21,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
         };
 
         mediaRecorder.onstop = () => {
-            status.textContent = "Status: Recording stopped.";
+            statusDisplay.textContent = "Status: Recording stopped.";
             const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
             const audioURL = URL.createObjectURL(audioBlob);
             audioPlayback.src = audioURL;
@@ -66,18 +66,4 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     })
     .catch(error => {
         alert('Error accessing the, Microphone: ' + error.message);
-    });
-
-// Fetch data from the Flask backend
-fetch('http://127.0.0.1:5000/process-audio')
-    .then(response => response.json()) // Parse the JSON response
-    .then(data => {
-        // Update the webpage with the received data
-        const output = document.getElementById('response');
-        output.innerHTML = `Message: ${data.advice}`;
-    })
-    
-    .catch(error => {
-        console.error('Error fetching data:', error);
-        document.getElementById('response').innerHTML = "Error fetching data.";
     });

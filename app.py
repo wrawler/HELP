@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import os
 import json
 import api_handler as handler
-import subprocess
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -10,13 +9,8 @@ app = Flask(__name__)
 
 WORQHAT_API_KEY = os.getenv('WORQHAT_API_KEY')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-AUDIO_FILE_PATH = ""
-UPLOAD_FOLDER = ""
-    
-with open("config.json") as config_File:
-    config = json.load(config_File)
-    AUDIO_FILE_PATH = config['AUDIO_FILE_PATH']
-    UPLOAD_FOLDER = config["UPLOAD_FOLDER"]
+AUDIO_FILE_PATH = os.getenv('AUDIO_FILE_PATH')
+UPLOAD_FOLDER = os.getenv('UPLOAD_FOLDER')
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -32,14 +26,23 @@ def process_audio():
     audio_file.save(AUDIO_FILE_PATH)
 
     # Sending API requests to WorqHat and OpenAI in order
-    transcript = handler.speech_to_text(AUDIO_FILE_PATH,WORQHAT_API_KEY)
-    advice = handler.ask_chatgpt(transcript,OPENAI_API_KEY)
+    try:
+        transcript = handler.speech_to_text(AUDIO_FILE_PATH, WORQHAT_API_KEY)
+    except Exception as e:
+        return jsonify({"Error": f"Error processing audio with WorqHat API: {str(e)}"}), 500
+    
+    try:
+        advice = handler.ask_chatgpt(transcript, OPENAI_API_KEY)
+    except Exception as e:
+        return jsonify({"Error": f"Error calling OpenAI API: {str(e)}"}), 500
+
 
     response = {
         "transcript": transcript,
         "advice": advice
     }
-
+    
+    print(response)
     return jsonify(response)
 
 if __name__ == '__main__':

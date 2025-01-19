@@ -9,8 +9,6 @@ import subprocess
 import json
 from dotenv import load_dotenv
 
-load_dotenv()
-
 CONFIG_PATH = "config.json"
 
 def write_env_file(api_keys):
@@ -28,6 +26,7 @@ def install_requirements():
     try:
         subprocess.check_call(["pip", "install", "-r", "requirements.txt"])
         print("[INFO] Dependencies installed successfully.")
+        
     except subprocess.CalledProcessError as e:
         print("[ERROR] Failed to install dependencies.")
         raise e
@@ -39,6 +38,7 @@ def start_server():
     print("[INFO] Starting Flask server...")
     try:
         subprocess.run(["python", "app.py"])
+        
     except KeyboardInterrupt:
         print("\n[INFO] Server stopped.")
     except Exception as e:
@@ -53,7 +53,7 @@ def main():
 
     # Get user inputs for API keys
     openai_api_key = input("Please enter your OpenAI API key: ").strip() or os.getenv('OPENAI_API_KEY')
-    worqhat_api_key = input("Please enter your WorqHat API key: ").strip()
+    worqhat_api_key = input("Please enter your WorqHat API key: ").strip() or os.getenv('WORQHAT_API_KEY')
 
     if not openai_api_key or not worqhat_api_key:
         print("[ERROR] Both API keys are required. Exiting setup.")
@@ -65,6 +65,10 @@ def main():
         "WORQHAT_API_KEY": worqhat_api_key,
     }
     write_env_file(api_keys)
+    
+    
+    # Loading the local environment variables
+    load_dotenv()
 
     # Install dependencies
     install_requirements()
