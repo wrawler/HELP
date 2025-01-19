@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Voice Input and Emergency Detection</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Voice Input and Emergency Detection</h1>
+    </header>
+
+    <div class="container">
+        <h2>Record Your Voice</h2>
+        <p>
+            Click "Start" to begin recording and "Stop" to finish. The response will
+            be displayed below.
+        </p>
+
+        <button id="startButton">Start Recording</button>
+        <button id="stopButton" disabled>Stop Recording</button>
+
+        <p id="status">Status: Not recording</p>
+        
+        <audio id="audioPlayback" controls style="display: none"></audio>
+        <div id = "response">dasasdasdasd</div>
+
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>

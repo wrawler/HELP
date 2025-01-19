@@ -1,0 +1,6 @@
+{
+    "UPLOAD_FOLDER": "media/uploaded/",
+    "AUDIO_FILE_PATH": "media/uploaded/uploaded_audio.wav",
+    "OPENAI_API_KEY" : "",
+    "WORQHAT_API_KEY" : ""
+}

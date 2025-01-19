@@ -1,0 +1,103 @@
+body, h1, h2, p, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ff4e50, #ff6a00);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Header Styling */
+header {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Container Styling */
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    margin-top: 5rem;
+}
+
+.container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffdf91; /* Light Yellow for urgency */
+}
+
+.container p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+/* Button Styling */
+button {
+    background-color: #ff4747; /* Red for urgency */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0.5rem;
+}
+
+button:hover {
+    background-color: #e03939; /* Darker Red */
+}
+
+button:disabled {
+    background-color: #bfbfbf;
+    cursor: not-allowed;
+}
+
+/* Status Text */
+#status {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    color: #ffdf91; /* Light Yellow for status */
+}
+
+#response {
+    width: 500px;          /* Set the width of the output window */
+    height: 300px;         /* Set the height of the output window */
+    border: 1px solid #000;/* Border around the window */
+    padding: 10px;         /* Padding inside the window */
+    background-color: #f1f1f1; /* Light background color */
+    overflow-y: auto;      /* Enable vertical scrolling if needed */
+    font-family: Consolas, monospace; /* Monospaced font for a console-like look */
+    font-size: 14px;       /* Text size */
+    white-space: pre-wrap;
+    color:#000;
+}
