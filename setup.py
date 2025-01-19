@@ -14,26 +14,6 @@ load_dotenv()
 CONFIG_PATH = "config.json"
 
 def write_env_file(api_keys):
-    # try:
-    #     if os.path.exists(CONFIG_PATH):
-    #         with open("config", "r") as file:
-    #             config = json.load(file)
-                
-    #     else:
-    #         config = {}
-
-    #     config.update(api_keys)
-
-    #     # Write back to the config file
-    #     with open(CONFIG_PATH, "w") as file:
-    #         json.dump(config, file, indent=4)
-            
-    #     print(f"[INFO] Successfully updated {CONFIG_PATH}.")
-        
-    # except Exception as e:
-    #     print(f"[ERROR] Failed to update {CONFIG_PATH}: {e}")
-    #     raise
-    
     with open(".env","a") as envFile:
         envFile.write('UPLOAD_FOLDER =  "media/uploaded/",\nAUDIO_FILE_PATH = "media/uploaded/uploaded_audio.wav"')
         
