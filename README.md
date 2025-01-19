@@ -35,7 +35,6 @@ If you are getting any sort of errors, just install it from https://www.python.o
     ```
     Enter the required data
     
-
 ## Usage ⚙️
 
 1. Open the HTML file in your Web Browser
